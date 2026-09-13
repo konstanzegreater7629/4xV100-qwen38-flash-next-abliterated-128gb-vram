@@ -1,0 +1,13 @@
+{
+ "tag": "CONC-A",
+ "suite": "custom",
+ "tests": {
+  "tg128": {
+   "mean": 41.5,
+   "stdev": 0.1,
+   "min": 41.5,
+   "max": 41.6,
+   "prompt_tokens": 23
+  }
+ }
+}

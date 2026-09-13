@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="520" viewBox="0 0 1000 520">
+  <defs>
+    <linearGradient id="bar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#76b900"/>
+      <stop offset="1" stop-color="#4d7c0f"/>
+    </linearGradient>
+    <style>
+      .h { font-family:Arial,sans-serif; font-size:16px; fill:#e6edf3; font-weight:bold; }
+      .c { font-family:Arial,sans-serif; font-size:12px; fill:#8b949e; }
+      .v { font-family:monospace; font-size:13px; fill:#e6edf3; font-weight:bold; }
+      .g { font-family:monospace; font-size:13px; fill:#76b900; font-weight:bold; }
+      .r { font-family:monospace; font-size:12px; fill:#f85149; font-weight:bold; }
+      .axis { stroke:#30363d; stroke-width:1.5; }
+      .grid { stroke:#21262d; stroke-width:1; stroke-dasharray:3,4; }
+    </style>
+  </defs>
+
+  <rect width="1000" height="520" fill="#0d1117" rx="10"/>
+  <text x="500" y="34" class="h" text-anchor="middle" font-size="19">Measured decode — single-stream journey &amp; concurrency scaling</text>
+
+  <!-- ============ LEFT: evolution bars ============ -->
+  <text x="250" y="70" class="h" text-anchor="middle">single-stream tg128 (tok/s)</text>
+
+  <!-- gridlines 0..60 -->
+  <g>
+    <line x1="70" y1="400" x2="430" y2="400" class="axis"/>
+    <line x1="70" y1="340" x2="430" y2="340" class="grid"/><text x="62" y="344" class="c" text-anchor="end">10</text>
+    <line x1="70" y1="280" x2="430" y2="280" class="grid"/><text x="62" y="284" class="c" text-anchor="end">20</text>
+    <line x1="70" y1="220" x2="430" y2="220" class="grid"/><text x="62" y="224" class="c" text-anchor="end">30</text>
+    <line x1="70" y1="160" x2="430" y2="160" class="grid"/><text x="62" y="164" class="c" text-anchor="end">40</text>
+    <line x1="70" y1="100" x2="430" y2="100" class="grid"/><text x="62" y="104" class="c" text-anchor="end">50</text>
+  </g>
+
+  <!-- bar 1: baseline 32.8 -->
+  <rect x="90" y="203" width="60" height="197" fill="#3d444d" rx="4"/>
+  <text x="120" y="195" class="v" text-anchor="middle">32.8</text>
+  <text x="120" y="420" class="c" text-anchor="middle">RadixArk</text>
+  <text x="120" y="436" class="c" text-anchor="middle">+ MTP k=2</text>
+
+  <!-- bar 2: MTP4 18.2 REJECTED -->
+  <rect x="170" y="291" width="60" height="109" fill="#f85149" opacity="0.55" rx="4"/>
+  <text x="200" y="283" class="r" text-anchor="middle">18.2 ✗</text>
+  <text x="200" y="420" class="c" text-anchor="middle">MTP4</text>
+  <text x="200" y="436" class="c" text-anchor="middle">REVERT</text>
+
+  <!-- bar 3: target-only 41.0 -->
+  <rect x="250" y="160" width="60" height="240" fill="#58a6ff" opacity="0.7" rx="4"/>
+  <text x="280" y="152" class="v" text-anchor="middle">41.0</text>
+  <text x="280" y="420" class="c" text-anchor="middle">target-only</text>
+  <text x="280" y="436" class="c" text-anchor="middle">E2</text>
+
+  <!-- bar 4: PR415 final 46.2 -->
+  <rect x="330" y="124" width="60" height="276" fill="url(#bar)" rx="4"/>
+  <text x="360" y="116" class="g" text-anchor="middle">46.2</text>
+  <text x="360" y="420" class="c" text-anchor="middle">+ PR #415</text>
+  <text x="360" y="436" class="c" text-anchor="middle">FINAL</text>
+
+  <!-- ============ RIGHT: concurrency ============ -->
+  <text x="720" y="70" class="h" text-anchor="middle">concurrency (4 concurrent streams)</text>
+
+  <line x1="540" y1="400" x2="960" y2="400" class="axis"/>
+  <text x="532" y="404" class="c" text-anchor="end">0</text>
+  <line x1="540" y1="330" x2="960" y2="330" class="grid"/><text x="532" y="334" class="c" text-anchor="end">30</text>
+  <line x1="540" y1="260" x2="960" y2="260" class="grid"/><text x="532" y="264" class="c" text-anchor="end">60</text>
+  <line x1="540" y1="190" x2="960" y2="190" class="grid"/><text x="532" y="194" class="c" text-anchor="end">90</text>
+  <line x1="540" y1="120" x2="960" y2="120" class="grid"/><text x="532" y="124" class="c" text-anchor="end">120</text>
+
+  <!-- aggregate bars -->
+  <rect x="560" y="335" width="70" height="65" fill="url(#bar)" rx="4"/>
+  <text x="595" y="327" class="g" text-anchor="middle">46.0</text>
+  <text x="595" y="420" class="c" text-anchor="middle">1 stream</text>
+
+  <rect x="650" y="300" width="70" height="100" fill="url(#bar)" rx="4"/>
+  <text x="685" y="292" class="g" text-anchor="middle">67.1</text>
+  <text x="685" y="420" class="c" text-anchor="middle">2 streams</text>
+
+  <rect x="740" y="244" width="70" height="156" fill="url(#bar)" rx="4"/>
+  <text x="775" y="236" class="g" text-anchor="middle">92.8</text>
+  <text x="775" y="420" class="c" text-anchor="middle">3 streams</text>
+
+  <rect x="830" y="177" width="70" height="223" fill="url(#bar)" rx="4"/>
+  <text x="865" y="169" class="g" text-anchor="middle">122.0</text>
+  <text x="865" y="420" class="c" text-anchor="middle">4 streams</text>
+
+  <!-- per-stream dashed line -->
+  <polyline points="595,335 685,285 775,259 865,255" fill="none" stroke="#58a6ff" stroke-width="2" stroke-dasharray="6,4"/>
+  <circle cx="595" cy="335" r="4" fill="#58a6ff"/>
+  <circle cx="685" cy="285" r="4" fill="#58a6ff"/>
+  <circle cx="775" cy="259" r="4" fill="#58a6ff"/>
+  <circle cx="865" cy="255" r="4" fill="#58a6ff"/>
+  <text x="690" y="238" class="c" fill="#58a6ff">per-stream: 46.0 → 33.5 → 30.9 → 30.5</text>
+
+  <!-- footnote -->
+  <text x="500" y="480" class="c" text-anchor="middle">rig: own harness, warm, n=3, TPOT from SSE chunks + real usage · box: 4× V100-SXM2-32GB reflashed PCIe · 2× Xeon E5-2680 v2 · torch 2.10.0+cu128</text>
+  <text x="500" y="500" class="c" text-anchor="middle">published 1Cat reference (65.9 / 80.7 / 138 MTP4) NOT reached — gap attributed to 2013 CPU + PCIe/PLX topology, see docs/</text>
+</svg>

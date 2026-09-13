@@ -1,0 +1,13 @@
+{
+ "tag": "PR415-det",
+ "suite": "det",
+ "tests": {},
+ "det": {
+  "unique_outputs": 1,
+  "samples": [
+   "**Cache-ul KV** (Key-Value) este o structură de date simplă care stochează infor",
+   "**Cache-ul KV** (Key-Value) este o structură de date simplă care stochează infor",
+   "**Cache-ul KV** (Key-Value) este o structură de date simplă care stochează infor"
+  ]
+ }
+}

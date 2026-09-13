@@ -1,0 +1,43 @@
+{
+ "tag": "PR415-quality",
+ "suite": "quality",
+ "tests": {},
+ "quality": [
+  {
+   "q": "Cat este 17 inmultit cu 23? Raspunde doar cu numarul.",
+   "expect": "391",
+   "pass": true,
+   "answer": "391"
+  },
+  {
+   "q": "Cat este 144 impartit la 12? Raspunde doar cu numarul.",
+   "expect": "12",
+   "pass": true,
+   "answer": "12"
+  },
+  {
+   "q": "Suma primelor 10 numere naturale nenule? Raspunde doar cu nu",
+   "expect": "55",
+   "pass": true,
+   "answer": "55"
+  },
+  {
+   "q": "Daca un tren merge 60 km/h timp de 2.5 ore, cati km parcurge",
+   "expect": "150",
+   "pass": true,
+   "answer": "150"
+  },
+  {
+   "q": "code suma_patrate",
+   "pass": true
+  },
+  {
+   "q": "ro",
+   "answer": "Cache-ul KV este o tehnică de optimizare care stochează cheile și valorile calcula anterior în mecanismul de atenție, pe"
+  },
+  {
+   "q": "en",
+   "answer": "Speculative decoding is a technique that accelerates large language model inference by using a smaller, faster draft mod"
+  }
+ ]
+}

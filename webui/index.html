@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!-- kimi (23-aug): WebUI minimal pentru serverul vLLM NVFP4 (Qwen3.8-27B) de pe :8000.
+     Single-file, zero dependente. Servit static; browserul vorbeste direct cu :8000 (CORS * pe vLLM). -->
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qwen3.8-27B NVFP4 — Test</title>
+<style>
+  :root { --bg:#0d1117; --panel:#161b22; --border:#30363d; --text:#e6edf3; --dim:#8b949e; --accent:#d2691e; --accent2:#1f6feb; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font:15px/1.5 -apple-system,Segoe UI,Roboto,sans-serif; height:100vh; display:flex; flex-direction:column; }
+  header { padding:10px 16px; background:var(--panel); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  header b { color:var(--accent); }
+  header .stat { color:var(--dim); font-size:13px; }
+  header .stat span { color:var(--accent2); font-weight:600; }
+  label { font-size:13px; color:var(--dim); display:flex; align-items:center; gap:5px; cursor:pointer; }
+  #chat { flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:12px; }
+  .msg { max-width:80%; padding:10px 14px; border-radius:12px; white-space:pre-wrap; word-wrap:break-word; }
+  .user { align-self:flex-end; background:var(--accent2); color:#fff; border-bottom-right-radius:3px; }
+  .bot { align-self:flex-start; background:var(--panel); border:1px solid var(--border); border-bottom-left-radius:3px; }
+  .bot .think { color:var(--dim); font-style:italic; border-left:3px solid var(--border); padding-left:8px; margin-bottom:6px; display:block; }
+  #inputbar { display:flex; gap:8px; padding:12px 16px; background:var(--panel); border-top:1px solid var(--border); }
+  #inp { flex:1; background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:8px; padding:10px 12px; font:inherit; resize:none; }
+  #inp:focus { outline:none; border-color:var(--accent2); }
+  button { background:var(--accent); color:#fff; border:none; border-radius:8px; padding:10px 18px; font:inherit; font-weight:600; cursor:pointer; }
+  button:disabled { opacity:.5; cursor:default; }
+  #stop { background:#8b3030; }
+</style>
+</head>
+<body>
+<header>
+  <b>Qwen3.8-27B NVFP4</b>
+  <span class="stat">server: <span id="srv">127.0.0.1:8000</span></span>
+  <span class="stat">viteza: <span id="tps">—</span></span>
+  <span class="stat">tokeni: <span id="ntok">—</span></span>
+  <label><input type="checkbox" id="thinking"> thinking</label>
+  <label>effort
+    <select id="effort" style="background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:5px;padding:2px 4px">
+      <option>low</option><option selected>medium</option><option>high</option><option>xhigh</option>
+    </select>
+  </label>
+</header>
+<div id="chat"></div>
+<div id="inputbar">
+  <textarea id="inp" rows="2" placeholder="Scrie mesajul... (Enter = trimite, Shift+Enter = rand nou)"></textarea>
+  <button id="send">Trimite</button>
+  <button id="stop" disabled>Stop</button>
+</div>
+<script>
+const API = "http://" + location.hostname + ":8000/v1/chat/completions";
+// optional API key (production serves with --api-key): set once in the console —
+//   localStorage.setItem("vllm_key","your-key")
+const API_KEY = localStorage.getItem("vllm_key") || "";
+const chat = document.getElementById("chat"), inp = document.getElementById("inp");
+const sendBtn = document.getElementById("send"), stopBtn = document.getElementById("stop");
+const tpsEl = document.getElementById("tps"), ntokEl = document.getElementById("ntok");
+let history = [], ctrl = null;
+
+function addMsg(role, text) {
+  const d = document.createElement("div");
+  d.className = "msg " + role;
+  d.textContent = text;
+  chat.appendChild(d);
+  chat.scrollTop = chat.scrollHeight;
+  return d;
+}
+
+function renderBot(el, think, answer) {
+  el.innerHTML = "";
+  if (think) { const s = document.createElement("span"); s.className = "think"; s.textContent = "💭 " + think; el.appendChild(s); }
+  el.appendChild(document.createTextNode(answer));
+  chat.scrollTop = chat.scrollHeight;
+}
+
+async function send() {
+  const text = inp.value.trim();
+  if (!text || ctrl) return;
+  inp.value = "";
+  addMsg("user", text);
+  history.push({role:"user", content:text});
+  const botEl = addMsg("bot", "…");
+  sendBtn.disabled = true; stopBtn.disabled = false;
+  ctrl = new AbortController();
+  const thinking = document.getElementById("thinking").checked;
+  const t0 = performance.now();
+  // kimi fix (23-aug): cu MTP spec decoding, vLLM trimite ~2,7 tokeni per chunk SSE —
+  // numaram CARACTERE pt estimare live (~5 car/token) si luam numarul EXACT din usage la final.
+  let ntok = 0, nchar = 0, raw = "", firstTok = 0;
+  try {
+    const r = await fetch(API, {
+      method:"POST", signal:ctrl.signal,
+      headers:{"Content-Type":"application/json", ...(API_KEY?{Authorization:"Bearer "+API_KEY}:{})},
+      body: JSON.stringify({
+        model:"qwen3.8-flash-next", messages:history, max_tokens:4096, temperature:0.7, stream:true,
+        stream_options:{include_usage:true},
+        chat_template_kwargs:{enable_thinking:thinking, reasoning_effort:document.getElementById("effort").value}
+      })
+    });
+    if (!r.ok) throw new Error("HTTP " + r.status + ": " + (await r.text()).slice(0,200));
+    const rd = r.body.getReader(), dec = new TextDecoder();
+    let buf = "";
+    while (true) {
+      const {done, value} = await rd.read();
+      if (done) break;
+      buf += dec.decode(value, {stream:true});
+      const lines = buf.split("\n"); buf = lines.pop();
+      for (const ln of lines) {
+        if (!ln.startsWith("data:")) continue;
+        const data = ln.slice(5).trim();
+        if (data === "[DONE]") continue;
+        try {
+          const obj = JSON.parse(data);
+          if (obj.usage) { ntok = obj.usage.completion_tokens; continue; }
+          const delta = obj.choices?.[0]?.delta;
+          const piece = delta?.content ?? delta?.reasoning_content ?? "";
+          if (piece) { if (!firstTok) firstTok = performance.now(); raw += piece; nchar += piece.length;
+            // separa <think>...</think> daca serverul nu foloseste reasoning_parser pe stream
+            const m = raw.match(/^<think>([\s\S]*?)(?:<\/think>([\s\S]*))?$/);
+            if (m) renderBot(botEl, m[1].trim(), (m[2]||"").trim()); else renderBot(botEl, "", raw);
+            const est = Math.max(1, Math.round(nchar / 5));
+            tpsEl.textContent = "~" + (est / ((performance.now() - (firstTok||t0)) / 1000)).toFixed(1) + " tok/s";
+            ntokEl.textContent = "~" + est;
+          }
+        } catch(e) {}
+      }
+    }
+    history.push({role:"assistant", content:raw});
+    // cifra EXACTA la final (din usage raportat de server)
+    if (ntok && firstTok) {
+      tpsEl.textContent = (ntok / ((performance.now() - firstTok) / 1000)).toFixed(1) + " tok/s";
+      ntokEl.textContent = ntok;
+    }
+  } catch(e) {
+    if (e.name === "AbortError") { raw += "\n[oprit de utilizator]"; history.push({role:"assistant", content:raw}); }
+    else botEl.textContent = "Eroare: " + e.message + "\n\nVerifica daca serverul NVFP4 ruleaza pe :8091.";
+  }
+  if (!raw) {} else renderBot(botEl, "", raw.replace(/<\/?think>/g,""));
+  ctrl = null; sendBtn.disabled = false; stopBtn.disabled = true;
+}
+
+sendBtn.onclick = send;
+stopBtn.onclick = () => ctrl && ctrl.abort();
+inp.addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); } });
+inp.focus();
+</script>
+</body>
+</html>

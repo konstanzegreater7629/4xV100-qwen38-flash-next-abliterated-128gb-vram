@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="480" viewBox="0 0 1000 480">
+  <defs>
+    <style>
+      .h { font-family:Arial,sans-serif; font-size:15px; fill:#e6edf3; font-weight:bold; }
+      .c { font-family:monospace; font-size:13px; fill:#8b949e; }
+      .nv { font-family:monospace; font-size:13px; fill:#76b900; font-weight:bold; }
+      .px { font-family:monospace; font-size:13px; fill:#b87333; font-weight:bold; }
+      .sys { font-family:monospace; font-size:13px; fill:#58a6ff; }
+      .cell { fill:#161b22; stroke:#30363d; stroke-width:1.5; }
+      .gpucell { fill:#0b3d1a; stroke:#76b900; stroke-width:2; }
+    </style>
+  </defs>
+
+  <rect width="1000" height="480" fill="#0d1117" rx="10"/>
+  <text x="500" y="34" class="h" text-anchor="middle" font-size="19">GPU topology — what <tspan font-family="monospace" font-size="16">nvidia-smi topo -m</tspan> actually reports</text>
+
+  <!-- matrix -->
+  <g transform="translate(120,80)">
+    <text x="60" y="0" class="c" text-anchor="middle">GPU0</text>
+    <text x="170" y="0" class="c" text-anchor="middle">GPU1</text>
+    <text x="280" y="0" class="c" text-anchor="middle">GPU2</text>
+    <text x="390" y="0" class="c" text-anchor="middle">GPU3</text>
+    <text x="500" y="0" class="c" text-anchor="middle">GPU4</text>
+    <text x="620" y="0" class="c" text-anchor="middle">NICs</text>
+
+    <!-- row GPU0 -->
+    <text x="-40" y="45" class="c" text-anchor="end">GPU0</text>
+    <rect x="15" y="22" width="90" height="34" class="cell" rx="6"/><text x="60" y="44" class="c" text-anchor="middle">X</text>
+    <rect x="125" y="22" width="90" height="34" class="cell" rx="6"/><text x="170" y="44" class="sys" text-anchor="middle">SYS</text>
+    <rect x="235" y="22" width="90" height="34" class="cell" rx="6"/><text x="280" y="44" class="sys" text-anchor="middle">SYS</text>
+    <rect x="345" y="22" width="90" height="34" class="cell" rx="6"/><text x="390" y="44" class="sys" text-anchor="middle">SYS</text>
+    <rect x="455" y="22" width="90" height="34" class="cell" rx="6"/><text x="500" y="44" class="sys" text-anchor="middle">SYS</text>
+
+    <!-- row GPU1 -->
+    <text x="-40" y="100" class="c" text-anchor="end">GPU1</text>
+    <rect x="15" y="77" width="90" height="34" class="cell" rx="6"/><text x="60" y="99" class="sys" text-anchor="middle">SYS</text>
+    <rect x="125" y="77" width="90" height="34" class="gpucell" rx="6"/><text x="170" y="99" class="c" text-anchor="middle">X</text>
+    <rect x="235" y="77" width="90" height="34" fill="#0b3d1a" stroke="#76b900" stroke-width="2" rx="6"/><text x="280" y="99" class="nv" text-anchor="middle">NV5</text>
+    <rect x="345" y="77" width="90" height="34" class="cell" rx="6"/><text x="390" y="99" class="px" text-anchor="middle">PIX</text>
+    <rect x="455" y="77" width="90" height="34" class="cell" rx="6"/><text x="500" y="99" class="px" text-anchor="middle">PIX</text>
+
+    <!-- row GPU2 -->
+    <text x="-40" y="155" class="c" text-anchor="end">GPU2</text>
+    <rect x="15" y="132" width="90" height="34" class="cell" rx="6"/><text x="60" y="154" class="sys" text-anchor="middle">SYS</text>
+    <rect x="125" y="132" width="90" height="34" fill="#0b3d1a" stroke="#76b900" stroke-width="2" rx="6"/><text x="170" y="154" class="nv" text-anchor="middle">NV5</text>
+    <rect x="235" y="132" width="90" height="34" class="gpucell" rx="6"/><text x="280" y="154" class="c" text-anchor="middle">X</text>
+    <rect x="345" y="132" width="90" height="34" class="cell" rx="6"/><text x="390" y="154" class="px" text-anchor="middle">PIX</text>
+    <rect x="455" y="132" width="90" height="34" class="cell" rx="6"/><text x="500" y="154" class="px" text-anchor="middle">PIX</text>
+
+    <!-- row GPU3 -->
+    <text x="-40" y="210" class="c" text-anchor="end">GPU3</text>
+    <rect x="15" y="187" width="90" height="34" class="cell" rx="6"/><text x="60" y="209" class="sys" text-anchor="middle">SYS</text>
+    <rect x="125" y="187" width="90" height="34" class="cell" rx="6"/><text x="170" y="209" class="px" text-anchor="middle">PIX</text>
+    <rect x="235" y="187" width="90" height="34" class="cell" rx="6"/><text x="280" y="209" class="px" text-anchor="middle">PIX</text>
+    <rect x="345" y="187" width="90" height="34" class="gpucell" rx="6"/><text x="390" y="209" class="c" text-anchor="middle">X</text>
+    <rect x="455" y="187" width="90" height="34" fill="#0b3d1a" stroke="#76b900" stroke-width="2" rx="6"/><text x="500" y="209" class="nv" text-anchor="middle">NV6</text>
+
+    <!-- row GPU4 -->
+    <text x="-40" y="265" class="c" text-anchor="end">GPU4</text>
+    <rect x="15" y="242" width="90" height="34" class="cell" rx="6"/><text x="60" y="264" class="sys" text-anchor="middle">SYS</text>
+    <rect x="125" y="242" width="90" height="34" class="cell" rx="6"/><text x="170" y="264" class="px" text-anchor="middle">PIX</text>
+    <rect x="235" y="242" width="90" height="34" class="cell" rx="6"/><text x="280" y="264" class="px" text-anchor="middle">PIX</text>
+    <rect x="345" y="242" width="90" height="34" fill="#0b3d1a" stroke="#76b900" stroke-width="2" rx="6"/><text x="390" y="264" class="nv" text-anchor="middle">NV6</text>
+    <rect x="455" y="242" width="90" height="34" class="gpucell" rx="6"/><text x="500" y="264" class="c" text-anchor="middle">X</text>
+  </g>
+
+  <!-- legend -->
+  <g transform="translate(120,400)">
+    <rect x="0" y="-14" width="18" height="18" fill="#0b3d1a" stroke="#76b900" stroke-width="2" rx="4"/>
+    <text x="28" y="0" class="nv">NVLink bonds — P2P allowed (NVL)</text>
+    <rect x="330" y="-14" width="18" height="18" fill="#161b22" stroke="#b87333" stroke-width="1.5" rx="4"/>
+    <text x="358" y="0" class="px">PIX (PLX bridge) — P2P deadlocks → SHM fallback</text>
+  </g>
+
+  <text x="500" y="452" class="c" text-anchor="middle" font-size="12">GPU0 = Quadro P400 (display only, excluded from compute) · all four V100-SXM2 reflashed on PCIe · NUMA node 0</text>
+</svg>

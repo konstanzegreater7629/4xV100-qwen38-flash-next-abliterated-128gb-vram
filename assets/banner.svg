@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#101b2d"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1c2733"/>
+      <stop offset="1" stop-color="#0f161e"/>
+    </linearGradient>
+    <linearGradient id="copper" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#b87333"/>
+      <stop offset="0.5" stop-color="#e8a45c"/>
+      <stop offset="1" stop-color="#b87333"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#76b900"/>
+      <stop offset="1" stop-color="#4d7c0f"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="300" fill="url(#bg)"/>
+
+  <!-- four stylized V100 cards, 2x2 -->
+  <g transform="translate(640,30)">
+    <g transform="translate(0,0)">
+      <rect x="0" y="14" width="260" height="100" rx="8" fill="#0b3d1a" stroke="#1f6b2f" stroke-width="2"/>
+      <rect x="12" y="26" width="236" height="76" rx="6" fill="url(#card)" stroke="#2d3a47" stroke-width="1.5"/>
+      <g fill="url(#copper)">
+        <rect x="24" y="38" width="6" height="52" rx="2"/><rect x="36" y="38" width="6" height="52" rx="2"/>
+        <rect x="48" y="38" width="6" height="52" rx="2"/><rect x="60" y="38" width="6" height="52" rx="2"/>
+        <rect x="72" y="38" width="6" height="52" rx="2"/><rect x="84" y="38" width="6" height="52" rx="2"/>
+      </g>
+      <rect x="110" y="42" width="52" height="52" rx="5" fill="#111" stroke="#76b900" stroke-width="2"/>
+      <text x="136" y="74" font-family="monospace" font-size="12" fill="#76b900" text-anchor="middle" font-weight="bold">GV100</text>
+      <rect x="176" y="42" width="60" height="52" rx="4" fill="#e8e8e8"/>
+      <text x="206" y="63" font-family="Arial, sans-serif" font-size="11" fill="#111" text-anchor="middle" font-weight="bold">TESLA</text>
+      <text x="206" y="80" font-family="Arial, sans-serif" font-size="15" fill="#111" text-anchor="middle" font-weight="bold">V100</text>
+      <!-- NVLink bridge to right neighbour -->
+      <rect x="260" y="52" width="20" height="24" fill="#76b900"/>
+    </g>
+    <g transform="translate(280,0)">
+      <rect x="0" y="14" width="260" height="100" rx="8" fill="#0b3d1a" stroke="#1f6b2f" stroke-width="2"/>
+      <rect x="12" y="26" width="236" height="76" rx="6" fill="url(#card)" stroke="#2d3a47" stroke-width="1.5"/>
+      <g fill="url(#copper)">
+        <rect x="24" y="38" width="6" height="52" rx="2"/><rect x="36" y="38" width="6" height="52" rx="2"/>
+        <rect x="48" y="38" width="6" height="52" rx="2"/><rect x="60" y="38" width="6" height="52" rx="2"/>
+        <rect x="72" y="38" width="6" height="52" rx="2"/><rect x="84" y="38" width="6" height="52" rx="2"/>
+      </g>
+      <rect x="110" y="42" width="52" height="52" rx="5" fill="#111" stroke="#76b900" stroke-width="2"/>
+      <text x="136" y="74" font-family="monospace" font-size="12" fill="#76b900" text-anchor="middle" font-weight="bold">GV100</text>
+      <rect x="176" y="42" width="60" height="52" rx="4" fill="#e8e8e8"/>
+      <text x="206" y="63" font-family="Arial, sans-serif" font-size="11" fill="#111" text-anchor="middle" font-weight="bold">TESLA</text>
+      <text x="206" y="80" font-family="Arial, sans-serif" font-size="15" fill="#111" text-anchor="middle" font-weight="bold">V100</text>
+      <rect x="-20" y="52" width="20" height="24" fill="#76b900"/>
+    </g>
+    <g transform="translate(0,120)">
+      <rect x="0" y="14" width="260" height="100" rx="8" fill="#0b3d1a" stroke="#1f6b2f" stroke-width="2"/>
+      <rect x="12" y="26" width="236" height="76" rx="6" fill="url(#card)" stroke="#2d3a47" stroke-width="1.5"/>
+      <g fill="url(#copper)">
+        <rect x="24" y="38" width="6" height="52" rx="2"/><rect x="36" y="38" width="6" height="52" rx="2"/>
+        <rect x="48" y="38" width="6" height="52" rx="2"/><rect x="60" y="38" width="6" height="52" rx="2"/>
+        <rect x="72" y="38" width="6" height="52" rx="2"/><rect x="84" y="38" width="6" height="52" rx="2"/>
+      </g>
+      <rect x="110" y="42" width="52" height="52" rx="5" fill="#111" stroke="#76b900" stroke-width="2"/>
+      <text x="136" y="74" font-family="monospace" font-size="12" fill="#76b900" text-anchor="middle" font-weight="bold">GV100</text>
+      <rect x="176" y="42" width="60" height="52" rx="4" fill="#e8e8e8"/>
+      <text x="206" y="63" font-family="Arial, sans-serif" font-size="11" fill="#111" text-anchor="middle" font-weight="bold">TESLA</text>
+      <text x="206" y="80" font-family="Arial, sans-serif" font-size="15" fill="#111" text-anchor="middle" font-weight="bold">V100</text>
+      <rect x="260" y="52" width="20" height="24" fill="#76b900"/>
+    </g>
+    <g transform="translate(280,120)">
+      <rect x="0" y="14" width="260" height="100" rx="8" fill="#0b3d1a" stroke="#1f6b2f" stroke-width="2"/>
+      <rect x="12" y="26" width="236" height="76" rx="6" fill="url(#card)" stroke="#2d3a47" stroke-width="1.5"/>
+      <g fill="url(#copper)">
+        <rect x="24" y="38" width="6" height="52" rx="2"/><rect x="36" y="38" width="6" height="52" rx="2"/>
+        <rect x="48" y="38" width="6" height="52" rx="2"/><rect x="60" y="38" width="6" height="52" rx="2"/>
+        <rect x="72" y="38" width="6" height="52" rx="2"/><rect x="84" y="38" width="6" height="52" rx="2"/>
+      </g>
+      <rect x="110" y="42" width="52" height="52" rx="5" fill="#111" stroke="#76b900" stroke-width="2"/>
+      <text x="136" y="74" font-family="monospace" font-size="12" fill="#76b900" text-anchor="middle" font-weight="bold">GV100</text>
+      <rect x="176" y="42" width="60" height="52" rx="4" fill="#e8e8e8"/>
+      <text x="206" y="63" font-family="Arial, sans-serif" font-size="11" fill="#111" text-anchor="middle" font-weight="bold">TESLA</text>
+      <text x="206" y="80" font-family="Arial, sans-serif" font-size="15" fill="#111" text-anchor="middle" font-weight="bold">V100</text>
+      <rect x="-20" y="52" width="20" height="24" fill="#76b900"/>
+    </g>
+    <!-- NVLink pair labels -->
+    <text x="130" y="10" font-family="monospace" font-size="12" fill="#76b900" text-anchor="middle">NV5 ×5 links</text>
+    <text x="410" y="10" font-family="monospace" font-size="12" fill="#76b900" text-anchor="middle">NV6 ×6 links</text>
+    <text x="130" y="248" font-family="monospace" font-size="12" fill="#8b949e" text-anchor="middle">GPU 1 ↔ 2</text>
+    <text x="410" y="248" font-family="monospace" font-size="12" fill="#8b949e" text-anchor="middle">GPU 3 ↔ 4</text>
+    <!-- cross-pair dashed -->
+    <line x1="270" y1="120" x2="270" y2="134" stroke="#b87333" stroke-width="2" stroke-dasharray="5,4"/>
+    <text x="270" y="152" font-family="monospace" font-size="11" fill="#b87333" text-anchor="middle">PLX</text>
+  </g>
+
+  <!-- title -->
+  <text x="60" y="100" font-family="Arial, sans-serif" font-size="50" font-weight="bold" fill="#e6edf3">Flash-Next on Volta</text>
+  <text x="60" y="140" font-family="Arial, sans-serif" font-size="22" fill="#8b949e">Qwen3.8-Flash-Next-ABLITERATED · NVFP4 · 4× Tesla V100-32GB (128 GB)</text>
+
+  <!-- speed pill -->
+  <g transform="translate(60,170)">
+    <rect width="430" height="52" rx="26" fill="url(#green)"/>
+    <polygon points="38,12 22,30 33,30 26,44 46,24 35,24" fill="#0d1117"/>
+    <text x="230" y="35" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#0d1117" text-anchor="middle">46 tok/s · 262K context</text>
+  </g>
+  <text x="60" y="252" font-family="Arial, sans-serif" font-size="19" fill="#8b949e">+165% aggregate at 4 concurrent streams · deterministic at temp=0</text>
+</svg>

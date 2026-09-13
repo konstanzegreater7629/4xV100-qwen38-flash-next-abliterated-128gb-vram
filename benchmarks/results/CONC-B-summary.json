@@ -1,0 +1,29 @@
+{
+ "tag": "CONC-B",
+ "levels": {
+  "1": {
+   "per_stream_mean": 46.0,
+   "agg_mean_tok_s": 46.0,
+   "agg_min": 45.7,
+   "agg_max": 46.1
+  },
+  "2": {
+   "per_stream_mean": 33.5,
+   "agg_mean_tok_s": 67.1,
+   "agg_min": 67.0,
+   "agg_max": 67.2
+  },
+  "3": {
+   "per_stream_mean": 30.9,
+   "agg_mean_tok_s": 92.8,
+   "agg_min": 92.4,
+   "agg_max": 93.0
+  },
+  "4": {
+   "per_stream_mean": 30.5,
+   "agg_mean_tok_s": 121.9,
+   "agg_min": 121.8,
+   "agg_max": 122.0
+  }
+ }
+}

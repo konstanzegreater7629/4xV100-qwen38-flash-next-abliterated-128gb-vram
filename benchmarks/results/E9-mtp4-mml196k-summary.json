@@ -1,0 +1,27 @@
+{
+ "tag": "E9-mtp4-mml196k",
+ "suite": "custom",
+ "tests": {
+  "tg128": {
+   "mean": 18.2,
+   "stdev": 0.0,
+   "min": 18.2,
+   "max": 18.2,
+   "prompt_tokens": 23
+  },
+  "tg256": {
+   "mean": 18.2,
+   "stdev": 0.0,
+   "min": 18.2,
+   "max": 18.2,
+   "prompt_tokens": 23
+  },
+  "chat": {
+   "mean": 18.2,
+   "stdev": 0.0,
+   "min": 18.2,
+   "max": 18.2,
+   "prompt_tokens": 38
+  }
+ }
+}
